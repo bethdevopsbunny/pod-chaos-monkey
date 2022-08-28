@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: pod-chaos-monkey-config
+data:
+  pod_chaos_monkey.yml: |
+    kubernetesNamespace: default
+    cron: "*/1 * * * *"
+    labelSelector: "chaosmonkey=true"
+    concurrentDeletes: 2
