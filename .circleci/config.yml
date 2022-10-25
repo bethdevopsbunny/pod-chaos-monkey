@@ -10,7 +10,10 @@ jobs:
       - run:
           name: "Build Container"
           command: |
+                docker login -u bethdevopsbunny -p $DOCKERPASS
                 docker build . --tag bethdevopsbunny/podchaosmonkey:$CIRCLE_SHA1
+                docker push bethdevopsbunny/podchaosmonkey:$CIRCLE_SHA1
+                
             
 
 
