@@ -11,7 +11,7 @@ jobs:
           name: "scan latest"
           command: |
             docker login -u bethdevopsbunny -p $DOCKER_PASS
-            docker scan bethdevopsbunny/podchaosmonkey:latest --accept-license
+            docker scan bethdevopsbunny/podchaosmonkey:latest --accept-license --json
       - run:
           name: "build container"
           command: |
