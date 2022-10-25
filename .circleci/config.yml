@@ -10,7 +10,7 @@ jobs:
       - run:
           name: "scan latest"
           command: |
-            docker scan bethdevopsbunny/podchaosmonkey:latest
+            docker scan bethdevopsbunny/podchaosmonkey:latest --accept-license
       - run:
           name: "build container"
           command: |
