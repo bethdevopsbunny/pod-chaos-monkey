@@ -11,12 +11,21 @@ jobs:
           name: "scan latest"
           command: |
             docker login -u bethdevopsbunny -p $DOCKER_PASS
-            docker scan bethdevopsbunny/podchaosmonkey:latest --accept-license --json
+            docker scan bethdevopsbunny/podchaosmonkey:latest --accept-license --json >> OLDIMAGEJSON
       - run:
           name: "build container"
           command: |
-                
                 docker build . --tag bethdevopsbunny/podchaosmonkey:$CIRCLE_SHA1
+                docker scan bethdevopsbunny/podchaosmonkey:$CIRCLE_SHA1 --accept-license --json >> NEWIMAGEJSON
+
+      - run:
+          name: "compare container vulnerabilities"
+          command: |
+               DIFF=$(echo OLDIMAGEJSON | jq .uniqueCount - echo NEWIMAGEJSON | jq .uniqueCount)
+              echo $DIFF
+
+      - run:
+          name: "push container"
                 docker push bethdevopsbunny/podchaosmonkey:$CIRCLE_SHA1
 
             
