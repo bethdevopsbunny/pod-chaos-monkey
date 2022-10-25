@@ -26,7 +26,8 @@ jobs:
 
       - run:
           name: "push container"
-                docker push bethdevopsbunny/podchaosmonkey:$CIRCLE_SHA1
+          command: |
+              docker push bethdevopsbunny/podchaosmonkey:$CIRCLE_SHA1
 
             
 
