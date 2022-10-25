@@ -8,12 +8,16 @@ jobs:
       - checkout
       - setup_remote_docker
       - run:
-          name: "Build Container"
+          name: "scan latest"
+          command: |
+            docker scan bethdevopsbunny/podchaosmonkey:latest
+      - run:
+          name: "build container"
           command: |
                 docker login -u bethdevopsbunny -p $DOCKER_PASS
                 docker build . --tag bethdevopsbunny/podchaosmonkey:$CIRCLE_SHA1
                 docker push bethdevopsbunny/podchaosmonkey:$CIRCLE_SHA1
-                
+
             
 
 
