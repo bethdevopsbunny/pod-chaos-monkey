@@ -21,8 +21,8 @@ jobs:
       - run:
           name: "compare container vulnerabilities"
           command: |
-               DIFF=$(echo OLDIMAGEJSON | jq .uniqueCount - echo NEWIMAGEJSON | jq .uniqueCount)
-              echo $DIFF
+                DIFF=$(echo OLDIMAGEJSON | jq .uniqueCount - echo NEWIMAGEJSON | jq .uniqueCount)
+                echo $DIFF
 
       - run:
           name: "push container"
