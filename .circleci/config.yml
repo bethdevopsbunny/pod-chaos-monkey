@@ -10,11 +10,12 @@ jobs:
       - run:
           name: "scan latest"
           command: |
+            docker login -u bethdevopsbunny -p $DOCKER_PASS
             docker scan bethdevopsbunny/podchaosmonkey:latest --accept-license
       - run:
           name: "build container"
           command: |
-                docker login -u bethdevopsbunny -p $DOCKER_PASS
+                
                 docker build . --tag bethdevopsbunny/podchaosmonkey:$CIRCLE_SHA1
                 docker push bethdevopsbunny/podchaosmonkey:$CIRCLE_SHA1
 
